@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<script>
+    // exercise 1 - function min
+    function minNum(a, b) {
+        if (a > b) return b;
+        return a;
+    }
+
+    console.log(minNum(0, -5))
+
+    // exercise 2 - function isEven
+
+    let counter = 0;
+    function isEven(num) {
+        ++counter;
+        console.log("counter: ", counter)
+        if (num === 0) return true;
+        else if(num === 1) return false;
+        else if (num < 0 ) return isEven(-num);
+        else return isEven(num - 2);
+
+    }
+
+    console.log(isEven(13))
+    // console.log(isEven(75))
+    // console.log(isEven(-5))
+
+    // exercise 3 - countBs
+    function countBs(str) {
+        let countB = 0;
+        for (let n = 0; n < str.length; n++) {
+            if (str[n] === "B") ++countB;
+        }
+        return countB;
+    }
+
+    console.log(countBs("doB"))
+    console.log(countBs("dob"))
+    console.log(countBs("Hadar"))
+
+    function countChar(str, char) {
+        let count = 0;
+        for (let n = 0; n < str.length; n++) {
+            if (str[n] === char) ++count;
+        }
+        return count;
+    }
+
+    console.log("this time it's countChar ", countChar("doB", "d"))
+
+    function countBsRewrite(str) {
+        return countChar(str, "B");
+    }
+
+    console.log("this time it's countBsRewrite ", countBsRewrite("BuldoB"))
+    console.log(Math.max(5,7))
+    console.log(Math.max);
+
+    Math.max = undefined;
+    console.log(Math.max(5,7))
+    console.log(Math.max);
+
+</script>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<script>
+    // exercise 1 - function range
+    function range (start, end, step = start < end ? 1 : -1 ) {
+        let arr = [];
+        if (step > 0) for (let i = start; i <= end; i += step) arr.push(i);
+        else for (let i = start; i >= end; i += step) arr.push(i);
+
+        return arr;
+    }
+
+    console.log(range(10, 2, -2));
+
+    function sum(array) {
+       //return array.reduce((acc, curr) => acc + curr)
+        let sum = 0;
+        for (let value of array) {
+            sum += value;
+        }
+
+        return sum;
+    }
+
+    console.log(sum(range(-5,0)));
+
+    // exercise 2 - function Reverse
+    function reverseArray(array) {
+        let reversedArray = [];
+
+        for (let i = array.length; i > 0; i--) {
+            reversedArray.push(array[i-1])
+        }
+
+        return reversedArray;
+    }
+
+    console.time("reversedArray");
+    console.log("reversed array is ", reverseArray([5,4,3,2,1]))
+    console.timeEnd("reversedArray");
+
+    function reverseArrayInPlace(array) {
+        for(let i = 0; i < Math.floor(array.length/2); i++) {
+            let temp = array[i];
+            array[i] = array[array.length - i - 1];
+            array[array.length - i - 1] = temp;
+        }
+
+        return array;
+    }
+
+    console.time("inPlace");
+    console.log("reversed array is ", reverseArrayInPlace([5,4,3,2,1]));
+    console.timeEnd("inPlace");
+
+    // exercise 3 - function A list
+    function arrayToList(array) {
+        let list = null;
+        for (let i = 0; i < array.length; i++) {
+            list = {value: array[i], rest: list};
+        }
+        return list;
+    }
+
+    console.log("arrayToList is ", arrayToList([1,2,3]))
+
+    function listToArray(list) {
+        let array = [];
+        for (let obj = list; obj; obj = obj.rest) {
+            array.push(obj.value);
+        }
+
+        return array;
+    }
+
+    console.log(listToArray({value: 1, rest: {value: 2, rest: null}}))
+
+    function prepend(value, list) {
+        return {value, rest: list}
+    }
+
+    function nth(list, num) {
+        if(!list) return undefined;
+        if (num === 0) return list.value;
+        return nth(list, num -1);
+    }
+
+    console.log(nth(arrayToList([5, 6, 7]), 2))
+
+    // exercise 4 - deep comparison
+    console.log("***************")
+    function deepEqual(a, b) {
+        if (a === b) return true;
+        if (typeof a !== "object" || typeof b !== "object") return false;
+        if (Object.keys(a).length !== Object.keys(b).length) return false;
+        let aKeys = Object.keys(a);
+        let bKeys = Object.keys(b);
+
+        console.log(aKeys);
+        console.log(bKeys);
+        for (let key of Object.keys(a)) {
+            if (!bKeys.includes(key)) return false;
+            if(!deepEqual(a[key], b[key])) return false;
+        }
+
+        return true;
+    }
+
+    let obj = {a: {z: "z"}, b: 2};
+    console.log(deepEqual(obj, obj));
+    console.log(deepEqual({a: {z: "z"}, b: 2}, {a: 1, b: 2}));
+    console.log(deepEqual(obj, {a: {z: "z"}, b: 2}));
+
+    const element = document.documentElement;
+    console.log("element is ", element)
+
+    console.log(document.querySelectorAll("p"))
+</script>
+<body>
+<h1>hello</h1>
+<p>h</p>
+<p>e</p>
+
+</body>
+<script>    console.log(document.querySelectorAll("p"))
+</script>
+</html>

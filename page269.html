@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>page269</title>
+  </head>
+
+  <body>
+    <!-- exercise 1 - Balloon -->
+    <h1>Exercise 1 - Balloon</h1>
+    <div id="balloon">🎈</div>
+    <p>Press up and down keys to inflate and deflate</p>
+
+    <!-- exercise 2 - MouseTrail -->
+    <h1>Exercise 2 - Mouse Trail</h1>
+    <div
+      id="ex2"
+      style="background: lightpink; width: 60px; height: 20px"
+    ></div>
+
+    <!-- exercise 3 - Tabs -->
+    <h1>Exercise 3 - Tabs</h1>
+    <div id="tabs">
+      <div id="tab-1">Tab No 1</div>
+      <div id="tab-2">Tab No 2</div>
+      <div id="tab-3">Tab No 3</div>
+    </div>
+  </body>
+  <script>
+    // // exercise 1 - balloon
+    // let balloonSize = 10;
+    // let balloon = document.getElementById("balloon");
+    // balloon.style.fontSize = balloonSize + "px";
+    //
+    // function handleEvent(event) {
+    //   if (event.key === "ArrowUp") {
+    //     if (balloonSize > 150) {
+    //       balloon.textContent = "💥";
+    //       document.removeEventListener("keydown", handleEvent);
+    //     } else {
+    //       balloonSize *= 1.1;
+    //       event.preventDefault();
+    //     }
+    //   } else if (event.key === "ArrowDown") {
+    //     balloonSize *= 0.9;
+    //     event.preventDefault();
+    //   }
+    //
+    //   balloon.style.fontSize = balloonSize + "px";
+    // }
+    // document.addEventListener("keydown", handleEvent);
+  </script>
+  <script>
+    // // exercise 2 - Mouse Trail
+    //
+    // let lastX;
+    // let bar = document.getElementById("ex2");
+    // bar.addEventListener("mousedown", (event) => {
+    //   if (event.button == 0) {
+    //     lastX = event.clientX;
+    //     window.addEventListener("mousemove", moved);
+    //     event.preventDefault();
+    //   }
+    // });
+    // function moved(event) {
+    //   if (event.buttons == 0) {
+    //     window.removeEventListener("mousemove", moved);
+    //   } else {
+    //     let dist = event.clientX - lastX;
+    //     let newWidth = Math.max(10, bar.offsetWidth + dist);
+    //     bar.style.width = newWidth + "px";
+    //     lastX = event.clientX;
+    //   }
+    // }
+  </script>
+
+  <script>
+    //exercise 3 - Tabs
+    function asTabs(list) {
+      // Creating buttons for each element in the list
+      let tabs = Array.from(list.children).map((list) => {
+        let button = document.createElement("button");
+        let tab = { list, button };
+        button.textContent = list.textContent;
+        button.addEventListener("click", () => selected(tab))
+        return tab;
+      });
+      console.log("tabs are ", tabs);
+      let buttonList = document.createElement("div");
+      tabs.forEach((tab) => {
+        buttonList.appendChild(tab.button);
+      });
+
+      list.insertBefore(buttonList, list.firstChild);
+
+      function selected(clickedTab) {
+        tabs.forEach(tab => {
+          console.log("what is tab? ", tab);
+          tab.list.style.display = tab === clickedTab ? "block" : "none";
+          tab.button.style.backgroundColor = tab === clickedTab ? "green" : "";
+        })
+      }
+
+      selected(tabs[0]);
+    }
+
+    asTabs(document.getElementById("tabs"));
+  </script>
+</html>

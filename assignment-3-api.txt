@@ -1,0 +1,22 @@
+// API
+carouseLoop({
+  items: [],
+  autoPlay: { enabled: false, speed: 2000 },
+  loop: true,
+  dots: {
+    showDots: true,
+    maxDotsToDisplay: 3,
+  },
+  displayItemNumber: true,
+  autoItemSize: {width: 500, height: 250}
+  classNames: {
+    carouselContainer: "carousel-container",
+    itemContainer: "item-container",
+    singleItem: "single-item",
+    rightArrow: "next-item-arrow",
+    leftArrow: "previous-item-arrow",
+    dotsBar: "dots-bar",
+    dot: "dot",
+    itemNumbering: "item-numbering",
+  },
+});
