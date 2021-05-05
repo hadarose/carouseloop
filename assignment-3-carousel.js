@@ -1,17 +1,3 @@
-function createCrouselContainer() {
-  let carousel = document.createElement("div");
-  carousel.className = classNames.carouselContainer;
-
-  carousel.addEventListener("click", setAutoPlay);
-}
-
-function fakeCarousel(config) {
-  createCrouselContainer();
-  createCarouselitems(items);
-  createPagination();
-  createDotNavigation();
-}
-
 function carouseLoop(
   items,
   { enabled, speed },
@@ -37,8 +23,8 @@ function carouseLoop(
     let singleItem = document.createElement("img");
     singleItem.className = classNames.singleItem;
     singleItem.src = item;
-    singleItem.style.width = width + "px";
-    singleItem.style.height = height + "px";
+    // singleItem.style.width = width + "px";
+    // singleItem.style.height = height + "px";
     itemContainer.appendChild(singleItem);
 
     if (itemNumbering) {
@@ -599,8 +585,6 @@ let movies = [
 let movies_images = movies.map((movie) => movie.show.image.medium);
 let items = ["hamburger.png", "sandwich.png", "hot-dog.png"];
 
-callMayan();
-window.callMaayan2();
 carouseLoop(
   items,
   { enabled: false, speed: 2000 },

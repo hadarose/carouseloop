@@ -12,6 +12,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .carousel-container {
@@ -19,14 +21,20 @@ body {
   justify-content: center;
   flex-direction: column;
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .item-container {
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .single-item {
- object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .fade-in {
@@ -79,3 +87,31 @@ body {
   color: transparent;
   text-shadow: 0 0 0 yellowgreen;
 }
+
+/* Comments after code review with Maayan
+1) object fit - if I put 100% width and height, than every parent from there on should have that too.
+2) don't give the developer the option for width and height in pixels - I can create a parent element for the
+single item container and decided it's 80% size and contain with object fit
+3) don't let them decide classnames, just give them prepared classes with the name of my library in the beginning of each class.
+4) use lodash defaults to create a default object to use if developer didn't insert certain properties.
+5) use one object for the configs (api), and not several arguments
+6) if I'm using import export - I should put in script tag type="module", if not I should put another script tag before
+the main one (this is how they did it in the old days).
+7) In the separate file I can declare function and var, but const and let won't work and the other file won't recognize them
+8) If I were to continue with the task I would restrict the number of displayed dots to 8 or 10 and force the number of items
+to be equal to the number of dots (up to 8 or 10).
+I also would extract functions such as:
+// function createCrouselContainer() {
+//   let carousel = document.createElement("div");
+//   carousel.className = classNames.carouselContainer;
+//
+//   carousel.addEventListener("click", setAutoPlay);
+// }
+
+// function fakeCarousel(config) {
+//   createCrouselContainer();
+//   createCarouselitems(items);
+//   createPagination();
+//   createDotNavigation();
+// }
+ */
